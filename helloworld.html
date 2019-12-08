@@ -1,10 +1,20 @@
 <html>
     <head>
         <!-- <script src="helloworld.js"></script> -->
+        <script src="message.js"></script>
     </head>
     <body>
         <script>
-            alert("I'm embedded JavaScript!")
+            "use strict" //use modern features of Javascript (also called as Livescript, ECMAScript)
+            const EMBEDDED_WELCOME_MESSAGE = "I'm embedded JavaScript!"
+            console.log(EMBEDDED_WELCOME_MESSAGE)
+            //EMBEDDED_WELCOME_MESSAGE = "Some other message"
+            if (true) {
+                var test1 = "Message one" // "var" creates out-of-block scope variable
+                let test2 = "Message two" // "let" creates block-scope variable
+            }
+            console.log(test1)
+            //console.log(test2)
         </script>
     </body>
 </html>
