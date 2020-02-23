@@ -29,3 +29,6 @@ test-output/
 #IntelliJ
 .idea/
 out/
+
+#Visual Studio Code
+.vscode/
