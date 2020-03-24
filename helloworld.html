@@ -23,16 +23,19 @@
             console.log("a == b : " + (a == b)) // true, different types (num and string) are trying to be converted to the same value of 0 (zero)
 
             // strict equality operator
-            console.log(" 0 == false : " + (0 == false)) // true, type conversion rules apply
-            console.log(" 0 === false : " + (0 === false)) // false, when strict equality operator is used no type conversion is made
+            console.log("0 == false : " + (0 == false)) // true, type conversion rules apply
+            console.log("0 === false : " + (0 === false)) // false, when strict equality operator is used no type conversion is made
 
             // null and undefined
             console.log("null === undefined : " + (null === undefined)) // false, different types
             console.log("null == undefined : " + (null == undefined)) // true, type conversion rules apply
             console.log("null > 0 : " + (null > 0 ))  // (1) false
-            console.log("null == 0 : " + (null == 0 )) // (2) false, '==' operator for null and undefined doesn't convert to number
+            console.log("null == 0 : " + (null == 0 )) // (2) false, '==' operator for null and undefined doesn't convert to number or any other type
             // when comparing with other types (exception for type conversion rule!)
             console.log("null >= 0 : " + (null >= 0 )) // (3) true, comparisons (>,<, >=, <=) convert null to number, treating it as 0
+
+            console.log("null == \\n0\\n : " + (null == "\n0\n")) // false, '==' operator for null and undefined doesn't convert to type
+            console.log("null === +\\n0\\n : " + (null === +"\n0\n")) // false, '==' operator for null and undefined doesn't convert to number
         </script>
     </body>
 </html>
