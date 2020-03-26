@@ -28,6 +28,12 @@
             let age = 101
             let message = (age < 3) ? "Hi, baby!" : (age < 18) ? "Hello!" : (age < 100) ? "Greetings!" : "What an unusual age!"
             console.log("Message : " + message)
+
+            let company = "Netscape"; // semicolon here is necessary because JS interpreter doesn't insert it automatically
+            (company == "Netscape") ?  // mimic "if" behaviour
+                console.log("Right!") : console.log("Wrong")
+            //(company == "Netscape") ? 
+            //    { console.log("Right!") } : { console.log("Wrong") } execution block for ternary won't work
         </script>
     </body>
 </html>
