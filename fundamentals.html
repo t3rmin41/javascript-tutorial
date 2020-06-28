@@ -34,6 +34,102 @@
                 console.log("Right!") : console.log("Wrong")
             //(company == "Netscape") ? 
             //    { console.log("Right!") } : { console.log("Wrong") } execution block for ternary won't work
+
+            let a = undefined
+            let b = "defined"
+            //let x = a ?? b
+            let x = (a !== null && a !== undefined) ? a : b // the long equivalent of nullish coalescing operator '??', doesn't work in older browsers
+            console.log("x =", x)
+
+            let i = 3
+            while (i) { // i == 0 is "falsy" so loop will stop when "i" becomes zero
+                console.log("i =", i)
+                i--
+            }
+
+            let j = 3
+            do {
+                if (j % 2 == 0) break // stop executing the loop 
+                console.log("j =", j)
+                j--
+            } while (j) // j == 0 is "falsy" so loop will stop when "j" becomes zero
+
+
+            for (let i = 0; i < 14; i++) {
+                if (i % 2 == 0) { continue } // do not execute even "i". Curly braces can be ommitted
+                if (i == 8) { break } // break won't happen since the iteration already continued
+                if (i == 11) break // break will happen hence "i equals 11" and "i equals 13" won't be output
+                console.log("i equals", i)
+            }
+
+            //functions
+            function greetingMessage(lastName) {
+                //firstName can be accessed inside function => firstName is global variable despite being initialized with "let"
+                console.log("Hello,", firstName, lastName)
+                firstName = "Phil" // also the global variable can be modified inside the function
+            }
+
+            let firstName = "John"
+
+            greetingMessage("Green")
+            greetingMessage("Town")
+
+            function shadowGreeting(pfirstName, lastName = "Doe") {
+                var firstName = pfirstName
+                console.log("Shadowed: Hello,", firstName, lastName)
+            }
+            shadowGreeting("Freddy")
+            shadowGreeting() //firstName has no value of "Phil" because inside shadowGreeting() it's shadowed
+            //(inner scope var with the same name is declared so outer scope var is shadowed)
+
+            //function expressions (assigning function to a variable)
+            let showFuncGreeting = function() {
+                console.log("Hello everyone!")
+            }
+            showFuncGreeting // doesn't run the function, mind the parenthesis
+
+            let anotherShowFuncGreeting = showFuncGreeting // copies the variable-function to another variable
+            anotherShowFuncGreeting() // runs the function
+
+
+            showFuncGreeting = function(name) { // redeclare functional expression
+                console.log("Hello,", name)
+            }
+            showFuncGreeting("Emily")
+
+            //callback functions - functions passed as parameters to declared function to call them inside the declared functions
+            function ask(question, yes, no) { //"question" is simple string but "yes" and "no" are callback functions
+                if (confirm(question)) yes() // confirm -> built-in Javascript dialog window with 2 options: OK and Cancel
+                else no()
+            }
+
+            function showOk() {
+                alert("Agreed")
+            }
+            function showCancel() {
+                alert("Cancelled agreement")
+            }
+            //ask("Do you agree?", showOk, showCancel)
+
+            //arrow functions - shorter version of function expressions
+
+            let sum = (a, b) => a + b
+            console.log("sum =", sum(5,4))
+
+            //longer version
+            let sum1 = function(x, y) {
+                return x + y
+            }
+            console.log("sum1 =", sum1(4,5))
+
+            let greeting = () => console.log("Hello world") // parenthesis must be present even if the function has no parameters
+            greeting()
+
+            let sum2 = (a, b) => { // multiline arrow function
+                let result = a + b
+                return result
+            }
+            console.log("sum2 =", sum2(3,6))
         </script>
     </body>
 </html>
