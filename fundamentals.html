@@ -1,0 +1,39 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <script>
+            "use strict" //use modern features of Javascript (also called as Livescript, ECMAScript)
+            if (0) { // "falsy" statement along with "", null, undefined, NaN and false
+                console.log("Will never happen")
+            }
+            if (1) { // other values are "truthy"
+                console.log("Will always happen")
+            }
+            
+            if ('') { // "falsy", too
+                console.log("Not executed")
+            }
+
+            let condition = (1 > 0) // true
+            if (condition) {
+                console.log("Condition is " + condition)
+            }
+            let adultAge = 18
+            let accessAllowed = adultAge >= 18 ? true : false
+            if (accessAllowed) {
+                console.log("Access is allowed, age : " + adultAge)
+            }
+
+            let age = 101
+            let message = (age < 3) ? "Hi, baby!" : (age < 18) ? "Hello!" : (age < 100) ? "Greetings!" : "What an unusual age!"
+            console.log("Message : " + message)
+
+            let company = "Netscape"; // semicolon here is necessary because JS interpreter doesn't insert it automatically
+            (company == "Netscape") ?  // mimic "if" behaviour
+                console.log("Right!") : console.log("Wrong")
+            //(company == "Netscape") ? 
+            //    { console.log("Right!") } : { console.log("Wrong") } execution block for ternary won't work
+        </script>
+    </body>
+</html>
