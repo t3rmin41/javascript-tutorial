@@ -1,0 +1,35 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <script>
+            "use strict" //use modern features of Javascript (also called as Livescript, ECMAScript)
+            let user = {
+                name: "Tom",
+                age: 29,
+                "likes birds": true,  // multiword property name must be quoted
+                isAdmin: false, // last property comma is OK
+            }
+            console.log("User name =", user.name)
+            console.log("User isAdmin =", user.isAdmin)
+            //console.log("Likes birds: ", user."likes birds") // won't work
+            console.log("Likes birds:", user["likes birds"]) // works
+
+            const user1 = {
+                name: "John"
+            }
+            user1.name = "Pete" // doesn't throw error (constant), user1 = ... would do
+            
+            console.log("User1 name =", user1.name)
+
+            //"in" operator for object properties
+            console.log("User has age:", ("age" in user))
+            console.log("User has likes birds:", ('likes birds' in user))
+
+            //show all properties in a loop
+            for (let key in user) {
+                console.log("Key:", key)
+            }
+        </script>
+    </body>
+</html>
