@@ -10,26 +10,113 @@
                 "likes birds": true,  // multiword property name must be quoted
                 isAdmin: false, // last property comma is OK
             }
-            console.log("User name =", user.name)
-            console.log("User isAdmin =", user.isAdmin)
+            //console.log("User name =", user.name)
+            //console.log("User isAdmin =", user.isAdmin)
             //console.log("Likes birds: ", user."likes birds") // won't work
-            console.log("Likes birds:", user["likes birds"]) // works
+            //console.log("Likes birds:", user["likes birds"]) // works
 
             const user1 = {
                 name: "John"
             }
             user1.name = "Pete" // doesn't throw error (constant), user1 = ... would do
             
-            console.log("User1 name =", user1.name)
+            //console.log("User1 name =", user1.name)
 
             //"in" operator for object properties
-            console.log("User has age:", ("age" in user))
-            console.log("User has likes birds:", ('likes birds' in user))
+            //console.log("User has age:", ("age" in user))
+            //console.log("User has likes birds:", ('likes birds' in user))
 
             //show all properties in a loop
             for (let key in user) {
-                console.log("Key:", key)
+                //console.log("Key:", key)
             }
+
+            // "=" operator copies reference, just like in Java or Python
+            let user2 = {
+                name: "John"
+            }
+            //console.log("user2.name =", user2.name)
+            
+            let user3 = user2
+            //console.log("user3.name =",user3.name)
+
+            user3.name = "Andrew"
+            //console.log("user2.name =", user2.name)
+            //console.log("user2 == user3 :", user2 == user3) // true, objects point to the same places of memory
+            //console.log("user2 === user3 :", user2 === user3) // true, objects point to the same places of memory
+
+            let user4 = {
+                name: "Andrew"
+            }
+            //console.log("user3 =", user3, "user4 =", user4)
+            //console.log("user3 == user4 :", user3 == user4) // false, objects point to different places of memory
+            //console.log("user3 === user4 :", user3 === user4) 
+
+            let animal = {
+                age: 2
+            }
+
+            let dog = {
+                name: "Pluto"
+            }
+            let merged = { name: "Merged" } // "name" will be overwritten
+            Object.assign(merged, animal, dog) // copies all properties to variable "merged"
+            //console.log("merged =", merged)
+
+            /* -- garbage collection -- */
+            //garbage is collected when the object becomes unreachable. What does it mean "unreachable"?
+            //It means if incoming reference to the object becomes null or undefined, the object becomes "unreachable" and will be removed
+            // e.g.
+            let arr1 = []
+
+            let user5 = {
+                name: "Steve"
+            }
+
+            console.log("user5 =", user5)
+
+            //user5 becomes unreachable - will be marked and sweeped for deletion
+            user5 = null
+            //unlike in Java, Garbage collector cannot be called or forced
+
+            //"this" keyword
+
+            let user6 = {
+                name: "Patrick",
+                getName() {
+                    return this.name
+                }
+            }
+            console.log("user6 name =", user6.getName())
+
+            //optional chaining with "?" (like in Kotlin)
+            //Currenctly only supported on Chrome v80 or later, and Firefox v74 or later.
+
+            let arr2 = []
+            let user7 = {
+                name: "Maggie",
+                age: 2,
+                email: {
+                    domain: "domain.com",
+                    username: "maggie",
+                    full_email: "maggie@domain.com"
+                }
+            }
+            let user8 = {
+                name: "Bart",
+                age: 7
+            }
+            arr2.push(user7, user8)
+
+            arr2.forEach(function(item, index) {
+                console.log("index =", index, "item.email.domain =", item.email)
+            })
+
+            let user9 = {
+                name: "Henry"
+            }
+            console.log("user9 name =", user9['name'])
+
         </script>
     </body>
 </html>
