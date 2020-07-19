@@ -90,7 +90,7 @@
             console.log("user6 name =", user6.getName())
 
             //optional chaining with "?" (like in Kotlin)
-            //Currenctly only supported on Chrome v80 or later, and Firefox v74 or later.
+            //Currently only supported on Chrome v80 or later, and Firefox v74 or later.
 
             let arr2 = []
             let user7 = {
@@ -109,6 +109,7 @@
             arr2.push(user7, user8)
 
             arr2.forEach(function(item, index) {
+                //console.log("index =", index, "item.email.domain =", item.email?.domain) //supported on Chrome v80 or later, and Firefox v74 or later.
                 console.log("index =", index, "item.email.domain =", item.email)
             })
 
