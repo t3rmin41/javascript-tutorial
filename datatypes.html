@@ -5,6 +5,37 @@
         <script>
             "use strict" //use modern features of Javascript (also called as Livescript, ECMAScript)
 
+            //primitive types: string, number, bigint, boolean, symbol, null and undefined
+            //object wrappers: String, Number, Boolean, Symbol (like in Java)
+            //in Javascript, creating wrapper objects like "new Boolean(false)" is possible for backward compatibility 
+            //but HIGHLY unrecommended (takes too much memory as any object)
+            //using without keyword "new" is totally OK
+            // let num = Number("123")
+            
+            // numbers
+            // no need to write lots of zeros
+            
+            let billion = 1e9 // instead of let billion = 1000000000
+            console.log("billion = ", billion)
+            
+            //or very small
+            
+            let milli = 1e-6
+            
+            console.log("milli = ", milli)
+            
+            let pico = 1e-12
+            console.log("pico = ", pico) // will be displayed as 1e-12 but all arithmetic operations are valid
+            console.log("pico * 1e6 = ", (pico * 1e6)) //
+            
+            
+            console.log("0.1 + 0.2 = ", (0.1 + 0.2)) // There’s just no way to store exactly 0.1 or exactly 0.2 using the binary system, so the result is 0.30000000000000004
+            
+            let sum = 0.1 + 0.2
+            console.log("toFixed 0.1 + 0.2 = ", sum.toFixed(2)) // toFixed() always returns a string
+            console.log("sum.toFixed(2) + 0.1 = ", sum.toFixed(2) + 0.1) // concatenates the strings and the result is "0.300.1"
+            
+            console.log("parseFloat(sum.toFixed(2)) + 0.1 = ", parseFloat(sum.toFixed(2)) + 0.1) // now the result is 0.4 (not string)
         </script>
     </body>
 </html>
