@@ -5,14 +5,16 @@
         <script>
             "use strict" //use modern features of Javascript (also called as Livescript, ECMAScript)
 
-            //primitive types: string, number, bigint, boolean, symbol, null and undefined
+            //////////////////primitive types: string, number, bigint, boolean, symbol, null and undefined
+            
             //object wrappers: String, Number, Boolean, Symbol (like in Java)
             //in Javascript, creating wrapper objects like "new Boolean(false)" is possible for backward compatibility 
             //but HIGHLY unrecommended (takes too much memory as any object)
             //using without keyword "new" is totally OK
             // let num = Number("123")
             
-            // numbers
+            ////////////////// numbers
+            
             // no need to write lots of zeros
             
             let billion = 1e9 // instead of let billion = 1000000000
@@ -31,11 +33,55 @@
             
             console.log("0.1 + 0.2 = ", (0.1 + 0.2)) // There’s just no way to store exactly 0.1 or exactly 0.2 using the binary system, so the result is 0.30000000000000004
             
-            let sum = 0.1 + 0.2
-            console.log("toFixed 0.1 + 0.2 = ", sum.toFixed(2)) // toFixed() always returns a string
-            console.log("sum.toFixed(2) + 0.1 = ", sum.toFixed(2) + 0.1) // concatenates the strings and the result is "0.300.1"
+            let simple_sum = 0.1 + 0.2
+            console.log("toFixed 0.1 + 0.2 = ", simple_sum.toFixed(2)) // toFixed() always returns a string
+            console.log("simple_sum.toFixed(2) + 0.1 = ", simple_sum.toFixed(2) + 0.1) // concatenates the strings and the result is "0.300.1"
             
-            console.log("parseFloat(sum.toFixed(2)) + 0.1 = ", parseFloat(sum.toFixed(2)) + 0.1) // now the result is 0.4 (not string)
+            console.log("parseFloat(simple_sum.toFixed(2)) + 0.1 = ", parseFloat(simple_sum.toFixed(2)) + 0.1) // now the result is 0.4 (not string)
+            
+            
+            
+            ///////////////// Strings: The internal format for strings is always UTF-16, it is not tied to the page encoding.
+            
+            //Strings can be enclosed by single-quote ' double quote " or backtick `
+            
+            let text = `Some text`
+            console.log(text)
+            // why use backticks? Backticks allow wrap expressions into ${} (like in Kotlin)
+            
+            function sum(...args) { // varargs are available since ES6
+                sum = 0
+                args.forEach( arg => {
+                    sum += arg
+                })
+                return sum
+            }
+            
+            console.log(`1 + 2 + 3 = ${sum(1, 2, 3)}`)
+            
+            //Also backticks allow spread String in multiple lines
+            
+            let guests = `Guests:
+                * John
+                * Paul
+                * Salma
+            `;
+            
+            console.log("Guests = ", guests)
+            
+            //Unicode symbols
+            let citation = "\u{00A9}"
+            console.log("Citation symbol =", citation)
+            
+            //Strings are immutable in Javascript, this means that char cannot be changed in the original string
+            let greeting = "Hi"
+            //greeting[0] = 'h' // error, read-only
+            console.log("greeting[0] =", greeting[0])
+            
+            //////// Arrays
+            
+            
+            
         </script>
     </body>
 </html>
