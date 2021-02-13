@@ -79,9 +79,93 @@
             console.log("greeting[0] =", greeting[0])
             
             //////// Arrays
+            let arr = []; // most common way to initialize array in Javascript
             
             
+            //The ways to mis-use array (bad use)
             
+            //1. Add non-numeric property
+            arr.test = 5 // technically it's possible since arrays are objects but discouraged
+            
+            console.log("arr =", arr)
+            
+            // make holes, e.g. spaces between indexes
+            arr[0] = 5
+            arr[7] = 2
+            
+            console.log("arr =", arr)
+            
+            // Fill array in the reverse order:
+            arr[100] = 100
+            arr[99] = 99
+            
+            console.log("arr =", arr)
+            
+            // Loops
+            // The old way
+            
+            let fruits = ["Apple", "Orange", "Grape"]
+            
+            console.log("Old way to iterate over \"fruits\" array")
+            for (let i = 0; i < fruits.length; i++) {
+                console.log("fruit["+i+"] = "+fruits[i])
+            }
+            
+            // iterate over "fruits" array with "for .. of" operator
+            console.log("iterate over \"fruits\" array with \"for .. of\" operator")
+            for (let fruit of fruits) {
+                console.log("current fruit =", fruit)
+            }
+            
+            //iterate over "fruits" array with "for .. in" operator // discouraged as it's 10 to 100 times slower
+            console.log("iterate over \"fruits\" array with \"for .. in\" operator")
+            for (let key in fruits) {
+                console.log("current element =", fruits[key])
+            }
+            
+            // Do not compare arrays with '==' operator as it compares references
+            
+            // Map and Set
+            
+            let countryMap = new Map([])
+            
+            countryMap.set("Lithuania", "Vilnius")
+               .set("Germany", "Berlin")
+               .set("Russia", "Moscow") //  .set() for map methods returns the map itself.
+            //The working way also is countryMap["Germany"] = "Berlin" but then map is treated as Javascript object and map key cannot be object, only string, symbol keys and other object limitations
+            
+            let john = { name: "John" }
+            let ben = { name: "Ben" }
+            
+            let visitsCountObj = {} // try to use an object
+            visitsCountObj[ben] = 234 // try to use ben object as the key
+            visitsCountObj[john] = 123 // try to use john object as the key, ben object will get replaced
+            
+            console.log("Ben visited "+visitsCountObj["[object Object]"]+" times"); // will print "Ben visited 123 times" - not what we want because it's John's visit count
+            
+            let correctVisitsCountObj = new Map()
+            correctVisitsCountObj.set(ben, 234)
+                                 .set(john, 123)
+            console.log("Ben visited "+correctVisitsCountObj.get(ben)+" times"); // will print "Ben visited 234 times"
+            
+            for (let country of countryMap.keys()) {
+                console.log(country)
+            }
+            
+            for (let country of countryMap.keys()) {
+                console.log(country+" capital is "+countryMap.get(country))
+            }
+            
+            // Set
+            
+            let countrySet = new Set()
+            countrySet.add("Spain")
+                      .add("France")
+                      .add("Sweden")
+            
+            for (let country of countrySet.entries()) { // countrySet.entries() returns (value, value) pair for compatibility with Map
+                console.log(country)
+            }
         </script>
     </body>
 </html>
