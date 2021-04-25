@@ -101,7 +101,7 @@
             
             console.log("arr =", arr)
             
-            // Loops
+            ///////////////// Loops
             // The old way
             
             let fruits = ["Apple", "Orange", "Grape"]
@@ -125,7 +125,7 @@
             
             // Do not compare arrays with '==' operator as it compares references
             
-            // Map and Set
+            //////////////// Map and Set
             
             let countryMap = new Map([])
             
@@ -166,6 +166,76 @@
             for (let country of countrySet.entries()) { // countrySet.entries() returns (value, value) pair for compatibility with Map
                 console.log(country)
             }
+            ///////////////////// weakMap and weakSet
+            
+            // the refernce which is null'ed will be garbage-collected as there are no references to it, e.g.
+            let bill = { name: 'Bill' }
+            bill = null
+            // object will be removed from the memory by garbage collector
+            
+            // the reference of object stored in array (because array stores references to object, not objects itself) remains if object is set to null, e.g.
+            let mark = { name: 'Mark' }
+            
+            let namesArr = [mark]
+            mark = null
+            console.log("namesArr[0] =",namesArr[0])
+            // the same applies to map
+            let jim = { name: 'Jim' }
+            
+            let namesMap = new Map()
+            namesMap.set(jim, "Jim")
+            jim = null
+            
+            console.log("namesMap.get(jim) =",namesMap.get(jim)) // prints 'undefined' but can be reached by printing map.keys()
+            console.log("namesMap.keys() =",namesMap.keys())
+            
+            let weakMap = new WeakMap()
+            let tim = { name: 'Tim' }
+            weakMap.set(tim, "Tim")
+            console.log("weakMap.get(tim) =",weakMap.get(tim))
+            
+            //can't use a string as the key
+            let nick = { name: 'Nick' }
+            //weakMap.set("nick", nick) // throws error
+            //console.log("weakMap.get(\"nick\") =",weakMap("nick"))
+            weakMap.set(nick, "Nick")
+            nick = null
+            
+            //console.log("weakMap.keys() =",weakMap.keys)) // throws error, WeakMap doesn't support keys(), values(), entries(), only get(), set(), delete(), has()
+            // why it's that? Technically it's not exactly specified when the cleanup happens. (just like with JVM garbage collection)
+            // It may choose to perform the memory cleanup immediately or to wait and do the cleaning later when more deletions happen. 
+            // So, technically, the current element count of a WeakMap is not known.
+            // The engine may have cleaned it up or not, or did it partially. For that reason, methods that access all keys/values are not supported.
+
+            ///////////////////// Object.keys, values and entries
+
+            let salaries = {
+                "John": 100,
+                "Pete": 300,
+                "Mary": 250
+            };
+            
+            function sumSalaries(salaries) {
+                //using reduce without let sum = 0; sum+=salary return sum;
+                return Object.values(salaries).reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+                // "reduce()" - it's object method,  "(acc, current) =>" lambda expression (inline function) and after "=>" goes the definition of the function (what it does), ", 0" - after comma goes initialValue
+                // "reduce()" calls lambda expression (callback) for each value
+            }
+            let empty = {};
+            
+            console.log("sumSalaries(salaries) =",sumSalaries(salaries));
+            console.log("sumSalaries(empty) =",sumSalaries(empty));
+            
+            function countAttributes(obj) {
+                return Object.keys(obj).reduce((acc, current) => acc + 1, 0);
+            }
+            let vilnius = {
+                "title": "Vilnius",
+                "isCapital": true,
+                "population": 500000
+            };
+            
+            console.log("countAttributes(vilnius) =",countAttributes(vilnius));
         </script>
     </body>
 </html>
